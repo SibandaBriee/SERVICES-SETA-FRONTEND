@@ -1,0 +1,547 @@
+.banner {
+  min-height: 220px;
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  background:
+    linear-gradient(rgba(24, 21, 19, 0.58), rgba(24, 21, 19, 0.58)),
+    url("/services-seta-hero.png") center 42% / cover no-repeat;
+}
+
+.banner::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 5px;
+  background: #e65e0d;
+}
+
+.bannerInner {
+  min-height: 220px;
+  display: grid;
+  place-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.banner h1 {
+  margin: 0;
+  color: #ffffff;
+  font-size: clamp(32px, 4vw, 48px);
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-align: center;
+}
+
+.readingWidth {
+  width: min(100% - 40px, 1120px);
+}
+
+.whatWeDo,
+.purposeSection,
+.legislationSection,
+.leadershipSection {
+  padding: 76px 0;
+}
+
+.whatWeDo,
+.legislationSection,
+.leadershipSection {
+  background: #ffffff;
+}
+
+.purposeSection {
+  background: #fbf8f5;
+  border-block: 1px solid #eee5dc;
+}
+
+.sectionTitle {
+  margin: 0 auto 42px;
+  text-align: center;
+}
+
+.sectionTitle h2 {
+  margin: 0;
+  color: #ee7d32;
+  font-size: clamp(34px, 4vw, 48px);
+  line-height: 1.08;
+  font-weight: 400;
+  letter-spacing: -0.035em;
+}
+
+.sectionTitle > span {
+  width: 126px;
+  height: 3px;
+  margin: 13px auto 0;
+  display: block;
+  position: relative;
+  border-radius: 999px;
+  background: #d94d2a;
+  transform: rotate(-1deg);
+}
+
+.sectionTitle > span::before,
+.sectionTitle > span::after {
+  content: "";
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  height: 2px;
+  border-radius: 999px;
+  background: rgba(217, 77, 42, 0.72);
+}
+
+.sectionTitle > span::before {
+  top: 5px;
+  transform: rotate(1.5deg);
+}
+
+.sectionTitle > span::after {
+  top: 9px;
+  transform: rotate(-1.5deg);
+}
+
+.prose {
+  max-width: 1030px;
+  margin: 0 auto;
+}
+
+.prose p {
+  margin: 0 0 20px;
+  color: #28231f;
+  font-size: 15px;
+  line-height: 1.72;
+}
+
+.prose p:last-child {
+  margin-bottom: 0;
+}
+
+.statementStack {
+  max-width: 1030px;
+  margin: 0 auto;
+  display: grid;
+  gap: 18px;
+}
+
+.statementCard {
+  min-height: 82px;
+  padding: 15px 20px;
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr);
+  gap: 16px;
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid #ef9a5c;
+  border-radius: 10px;
+}
+
+.statementIcon {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  color: #ef7d31;
+}
+
+.statementIcon svg {
+  width: 40px;
+  height: 40px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.statementCard h3 {
+  margin: 0 0 4px;
+  color: #d13937;
+  font-size: 15px;
+  line-height: 1.25;
+}
+
+.statementCard p {
+  margin: 0;
+  color: #2a2521;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.valuesHeading {
+  margin: 44px auto 24px;
+  color: #cb3436;
+  font-size: 18px;
+  line-height: 1.35;
+  font-weight: 800;
+  text-align: center;
+}
+
+.valuesDiagram {
+  max-width: 680px;
+  min-height: 340px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(120px, 1fr));
+  grid-template-rows: repeat(3, auto);
+  gap: 8px 42px;
+  align-items: center;
+  justify-items: center;
+}
+
+.valueItem {
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.valueTopLeft {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.valueTopRight {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+.valueCenter {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.valueBottomLeft {
+  grid-column: 1;
+  grid-row: 3;
+}
+
+.valueBottomRight {
+  grid-column: 3;
+  grid-row: 3;
+}
+
+.valueIcon {
+  width: 76px;
+  height: 76px;
+  display: grid;
+  place-items: center;
+  color: #d95b39;
+}
+
+.valueCenter .valueIcon {
+  width: 100px;
+  height: 100px;
+  color: #ef8d2f;
+}
+
+.valueIcon svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.valueItem strong {
+  margin-top: 5px;
+  color: #25201c;
+  font-size: 12px;
+  line-height: 1.25;
+}
+
+.legislationSection .prose {
+  margin-bottom: 36px;
+}
+
+.frameworkCard {
+  max-width: 1030px;
+  margin: 0 auto;
+  padding: 26px;
+  background: #ffffff;
+  border: 1px solid #ef9a5c;
+  border-radius: 12px;
+}
+
+.frameworkIntro {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr) 74px;
+  gap: 18px;
+  align-items: start;
+}
+
+.frameworkIntro img {
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+}
+
+.frameworkIntro p {
+  margin: 0;
+  color: #211d19;
+  font-size: 14px;
+  line-height: 1.62;
+}
+
+.scaleIcon {
+  width: 70px;
+  height: 70px;
+  display: grid;
+  place-items: center;
+  color: #e7b25d;
+}
+
+.scaleIcon svg {
+  width: 64px;
+  height: 64px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.outcomesBox {
+  width: min(100% - 88px, 800px);
+  margin: 22px 0 0 82px;
+  padding: 22px 26px;
+  background: #ee9b22;
+  color: #ffffff;
+  border-radius: 9px;
+}
+
+.outcomesBox ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.outcomesBox li {
+  margin: 3px 0;
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.leadershipSection {
+  border-top: 1px solid #eee5dc;
+}
+
+.administratorWrap {
+  width: min(100%, 260px);
+  margin: 0 auto 28px;
+}
+
+.executiveGrid {
+  max-width: 980px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px 36px;
+  align-items: stretch;
+}
+
+.executiveGrid > article:last-child {
+  grid-column: 2;
+}
+
+.personCard {
+  min-height: 160px;
+  padding: 17px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: #ffffff;
+  border: 1px solid #8e8e8e;
+  border-radius: 9px;
+}
+
+.personCardFeatured {
+  min-height: 175px;
+  border-color: #ef9a5c;
+}
+
+.personAvatar {
+  width: 72px;
+  height: 72px;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(145deg, #f1873f, #cd4f12);
+  color: #ffffff;
+  border: 3px solid #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px #e9ba97;
+}
+
+.personAvatar img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.personAvatar span {
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: 0.03em;
+}
+
+.personCard h3 {
+  margin: 12px 0 5px;
+  color: #c93539;
+  font-size: 12px;
+  line-height: 1.3;
+}
+
+.personCard p {
+  min-height: 28px;
+  margin: 0;
+  color: #25211e;
+  font-size: 8px;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+@media (max-width: 900px) {
+  .valuesDiagram {
+    gap-inline: 18px;
+  }
+
+  .executiveGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .executiveGrid > article:last-child {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 700px) {
+  .banner,
+  .bannerInner {
+    min-height: 170px;
+  }
+
+  .whatWeDo,
+  .purposeSection,
+  .legislationSection,
+  .leadershipSection {
+    padding: 58px 0;
+  }
+
+  .sectionTitle {
+    margin-bottom: 34px;
+  }
+
+  .prose p {
+    font-size: 14px;
+  }
+
+  .valuesDiagram {
+    min-height: 0;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: auto;
+    gap: 24px 16px;
+  }
+
+  .valueTopLeft,
+  .valueTopRight,
+  .valueCenter,
+  .valueBottomLeft,
+  .valueBottomRight {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .valueCenter {
+    grid-column: 1 / -1;
+  }
+
+  .frameworkIntro {
+    grid-template-columns: 54px minmax(0, 1fr);
+  }
+
+  .scaleIcon {
+    display: none;
+  }
+
+  .outcomesBox {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .executiveGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 460px) {
+  .readingWidth {
+    width: min(100% - 28px, 1120px);
+  }
+
+  .statementCard {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .statementIcon {
+    margin: 0 auto;
+  }
+
+  .valuesHeading {
+    font-size: 15px;
+  }
+
+  .valuesDiagram {
+    grid-template-columns: 1fr;
+  }
+
+  .valueCenter {
+    grid-column: auto;
+  }
+
+  .frameworkCard {
+    padding: 20px;
+  }
+
+  .frameworkIntro {
+    grid-template-columns: 1fr;
+  }
+
+  .frameworkIntro img {
+    margin: 0 auto;
+  }
+}
+
+/* Straight section-title underline */
+
+.sectionTitle > span {
+  width: 120px !important;
+  height: 3px !important;
+  margin: 14px auto 0 !important;
+  display: block !important;
+  background: #e65e0d !important;
+  background-image: none !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+.sectionTitle > span::before,
+.sectionTitle > span::after {
+  content: none !important;
+  display: none !important;
+}
+
+.sectionTitle > span > * {
+  display: none !important;
+}

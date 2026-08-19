@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { importantDates, notices } from "../data/homeData";
 
@@ -18,7 +19,9 @@ export default function Updates() {
   }
 
   useEffect(() => {
-    if (!calendarOpen) return;
+    if (!calendarOpen) {
+      return;
+    }
 
     function handleEscape(event: KeyboardEvent) {
       if (event.key === "Escape") {
@@ -40,44 +43,59 @@ export default function Updates() {
     <>
       <section className="updates-section" id="notices">
         <div className="container">
-          <div className="section-heading">
+          <div className="updates-header">
             <div>
-              <p className="eyebrow">Stay informed</p>
+              <p className="updates-kicker">Stay informed</p>
               <h2>Current information, clearly marked</h2>
             </div>
 
-            <a href="/stakeholder-notices">View all notices →</a>
+            <Link
+              href="/stakeholder-notices"
+              className="updates-view-all"
+            >
+              View all notices →
+            </Link>
           </div>
 
           <div className="updates-grid">
-            <article className="panel notice-panel">
-              <div className="panel-head">
+            <article className="updates-card">
+              <div className="updates-card-head">
                 <h3>Latest notices</h3>
-                <a href="/stakeholder-notices">View all</a>
+
+                <Link href="/stakeholder-notices">
+                  View all
+                </Link>
               </div>
 
               {notices.map((notice) => (
-                <a
-                  className="notice"
+                <Link
+                  className="notice-item"
                   href={notice.href}
                   key={notice.title}
                 >
-                  <span className={`badge ${notice.tone}`}>
+                  <span
+                    className={`notice-tag ${notice.tone}`}
+                  >
                     {notice.type}
                   </span>
 
-                  <span>
-                    <strong>{notice.title}</strong>
-                    <small>{notice.close}</small>
-                  </span>
+                  <div className="notice-copy">
+                    <h4>{notice.title}</h4>
+                    <p>{notice.close}</p>
+                  </div>
 
-                  <b>→</b>
-                </a>
+                  <span
+                    className="notice-arrow"
+                    aria-hidden="true"
+                  >
+                    →
+                  </span>
+                </Link>
               ))}
             </article>
 
-            <article className="panel">
-              <div className="panel-head">
+            <article className="updates-card">
+              <div className="updates-card-head">
                 <h3>Important dates</h3>
 
                 <button
@@ -91,41 +109,58 @@ export default function Updates() {
 
               {importantDates.map((importantDate) => (
                 <div
-                  className="date-row"
-                  key={`${importantDate.day}-${importantDate.month}`}
+                  className="date-item"
+                  key={`${importantDate.day}-${importantDate.month}-${importantDate.title}`}
                 >
-                  <div className="date">
+                  <div className="date-box">
                     <strong>{importantDate.day}</strong>
                     <span>{importantDate.month}</span>
                   </div>
 
-                  <div>
-                    <strong>{importantDate.title}</strong>
-                    <small>{importantDate.description}</small>
+                  <div className="date-copy">
+                    <h4>{importantDate.title}</h4>
+                    <p>{importantDate.description}</p>
                   </div>
                 </div>
               ))}
             </article>
 
-            <article className="panel support-panel" id="support">
-              <span className="support-symbol">?</span>
-              <p className="eyebrow">Help and support</p>
+            <aside className="support-card" id="support">
+              <p className="support-kicker">
+                Help and support
+              </p>
+
               <h3>Not sure where to start?</h3>
 
-              <p>
-                Tell us what you need help with and we’ll guide you to the
-                right information, system or support channel.
+              <p className="support-text">
+                Tell us what you need help with and we’ll guide
+                you to the right information, system or support
+                channel.
               </p>
 
               <div className="support-actions">
-                <a href="/support">Get guided help →</a>
-                <a href="/contact">Lodge an enquiry</a>
+                <Link
+                  href="/support"
+                  className="support-button"
+                >
+                  Get guided help →
+                </Link>
+
+                <Link
+                  href="/contact"
+                  className="support-link"
+                >
+                  Lodge an enquiry
+                </Link>
               </div>
 
-              <div className="response-note">
-                <span>●</span> Customer care available Monday–Friday
+              <div className="support-meta">
+                <span className="support-dot" />
+                <p>
+                  Customer care available Monday–Friday
+                </p>
               </div>
-            </article>
+            </aside>
           </div>
         </div>
       </section>
@@ -147,12 +182,17 @@ export default function Updates() {
           >
             <header className="calendar-modal-head">
               <div>
-                <p className="eyebrow">Services SETA calendar</p>
-                <h2 id="calendar-title">Critical dates and deadlines</h2>
+                <p className="eyebrow">
+                  Services SETA calendar
+                </p>
+
+                <h2 id="calendar-title">
+                  Critical dates and deadlines
+                </h2>
 
                 <p>
-                  Review upcoming actions and access the relevant guidance
-                  before each deadline.
+                  Review upcoming actions and access the relevant
+                  guidance before each deadline.
                 </p>
               </div>
 
@@ -193,7 +233,9 @@ export default function Updates() {
                       <p>{importantDate.description}</p>
                     </div>
 
-                    <a href="/support">View guidance →</a>
+                    <Link href="/support">
+                      View guidance →
+                    </Link>
                   </article>
                 );
               })}
@@ -201,11 +243,14 @@ export default function Updates() {
 
             <footer className="calendar-modal-foot">
               <span>
-                Dates shown are sample content and require business
-                confirmation.
+                Dates shown are sample content and require
+                business confirmation.
               </span>
 
-              <button type="button" onClick={closeCalendar}>
+              <button
+                type="button"
+                onClick={closeCalendar}
+              >
                 Close calendar
               </button>
             </footer>

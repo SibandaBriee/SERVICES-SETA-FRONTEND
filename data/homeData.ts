@@ -1,13 +1,19 @@
-export type Pathway = {
-  icon: string;
-  title: string;
-  text: string;
-  href: string;
-};
 
 export type QuickTask = {
   icon: string;
   title: string;
+  href: string;
+};
+
+export type NewsItem = {
+  image: string;
+  imageAlt: string;
+  date: string;
+  day: string;
+  month: string;
+  category: string;
+  title: string;
+  summary: string;
   href: string;
 };
 
@@ -38,6 +44,13 @@ export type ImportantDate = {
   status: string;
   tone: ImportantDateStatus;
   href: string;
+};
+export type Pathway = {
+  icon: string;
+  title: string;
+  text: string;
+  href: string;
+  image: string;
 };
 
 export const popularSearches = [
@@ -75,27 +88,30 @@ export const pathways: Pathway[] = [
     title: "Learner",
     text: "Explore careers, find programmes and get support throughout your journey.",
     href: "/stakeholders/learners",
+    image: "/pathways/learner.jpg",
   },
   {
     icon: "▣",
     title: "Employer / SDF",
     text: "Meet your obligations, access funding and develop your workforce.",
     href: "/stakeholders/employers-sdfs",
+    image: "/pathways/employer-sdf.jpg",
   },
   {
     icon: "▥",
     title: "Skills Development Provider",
     text: "Accreditation, programme delivery, reporting and support.",
     href: "/stakeholders/skills-development-providers",
+    image: "/pathways/provider.jpg",
   },
   {
     icon: "◇",
     title: "Government / Public Entity",
     text: "Partnerships, projects and sector development.",
     href: "/stakeholders/government-public-entities",
+    image: "/pathways/government.jpg",
   },
 ];
-
 export const quickTasks: QuickTask[] = [
   {
     icon: "⌖",
@@ -212,4 +228,44 @@ export const journeySteps = [
   "Get support",
   "Complete",
   "Next step",
+];
+
+
+export const newsItems: NewsItem[] = [
+  {
+    image: "/news/power-of-x2.png",
+    imageAlt: "The Power of X squared internship programme",
+    date: "2026-08-12",
+    day: "12",
+    month: "Aug",
+    category: "Announcement",
+    title: "The Power of X² Internship Programme",
+    summary:
+      "Connecting graduates to meaningful workplace experience and career development opportunities.",
+    href: "/stakeholder-notices",
+  },
+  {
+    image: "/news/audit-risk.png",
+    imageAlt: "Services SETA Audit and Risk Committee invitation",
+    date: "2026-08-10",
+    day: "10",
+    month: "Aug",
+    category: "Governance",
+    title: "Invitation to serve on the Audit and Risk Committee",
+    summary:
+      "Read the invitation, eligibility requirements and application information.",
+    href: "/stakeholder-notices",
+  },
+  {
+    image: "/news/pulse-july-2026.png",
+    imageAlt: "Services SETA Pulse newsletter July 2026",
+    date: "2026-07-31",
+    day: "31",
+    month: "Jul",
+    category: "Newsletter",
+    title: "Services SETA Pulse — July 2026 Edition",
+    summary:
+      "Read the latest Services SETA news, programme updates and sector developments.",
+    href: "/stakeholder-notices",
+  },
 ];

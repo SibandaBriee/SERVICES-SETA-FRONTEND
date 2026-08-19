@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import ContentPage from "../../components/ContentPage";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
@@ -9,6 +10,14 @@ type DynamicPageProps = {
     slug: string[];
   }>;
 };
+
+export function generateStaticParams() {
+  const availableRoutes = [...Object.keys(pages), "resources"];
+
+  return Array.from(new Set(availableRoutes)).map((slug) => ({
+    slug: slug.split("/"),
+  }));
+}
 
 export default async function DynamicPage({
   params,
@@ -26,7 +35,11 @@ export default async function DynamicPage({
     );
   }
 
-  const pageData = pages[slug] ?? pages["i-want-to"];
+  const pageData = pages[slug];
+
+  if (!pageData) {
+    notFound();
+  }
 
   return (
     <main>
