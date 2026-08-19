@@ -2,11 +2,31 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import type { PageData } from "../data/pages";
+import type { PageCard, PageData } from "../data/pages";
 
 type ContentPageProps = {
   data: PageData;
 };
+
+type CardContentsProps = {
+  card: PageCard;
+  index: number;
+  showAction: boolean;
+};
+
+function CardContents({ card, index, showAction }: CardContentsProps) {
+  return (
+    <>
+      <span className="card-number">
+        {String(index + 1).padStart(2, "0")}
+      </span>
+      {card.meta && <small>{card.meta}</small>}
+      <h3>{card.title}</h3>
+      <p>{card.text}</p>
+      {showAction && <b>Learn more →</b>}
+    </>
+  );
+}
 
 export default function ContentPage({ data }: ContentPageProps) {
   const [query, setQuery] = useState("");
@@ -70,26 +90,30 @@ export default function ContentPage({ data }: ContentPageProps) {
                 onChange={(event) => setQuery(event.target.value)}
                 placeholder="Filter this page…"
               />
-              <b>⌕</b>
+              <b aria-hidden="true">⌕</b>
             </label>
           </div>
 
           <div className="content-card-grid">
-            {visibleCards.map((card, index) => (
-              <Link
-                className="content-card"
-                href={card.href ?? "/support"}
-                key={card.title}
-              >
-                <span className="card-number">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                {card.meta && <small>{card.meta}</small>}
-                <h3>{card.title}</h3>
-                <p>{card.text}</p>
-                <b>Learn more →</b>
-              </Link>
-            ))}
+            {visibleCards.map((card, index) =>
+              card.href ? (
+                <Link
+                  className="content-card"
+                  href={card.href}
+                  key={card.title}
+                >
+                  <CardContents card={card} index={index} showAction />
+                </Link>
+              ) : (
+                <article className="content-card" key={card.title}>
+                  <CardContents
+                    card={card}
+                    index={index}
+                    showAction={false}
+                  />
+                </article>
+              ),
+            )}
           </div>
 
           {visibleCards.length === 0 && (
