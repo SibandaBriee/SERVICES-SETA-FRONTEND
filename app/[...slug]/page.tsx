@@ -1,6 +1,7 @@
 import ContentPage from "../../components/ContentPage";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
+import ResourcesPage from "../../components/ResourcesPage";
 import { pages } from "../../data/pages";
 
 type DynamicPageProps = {
@@ -9,9 +10,22 @@ type DynamicPageProps = {
   }>;
 };
 
-export default async function DynamicPage({ params }: DynamicPageProps) {
+export default async function DynamicPage({
+  params,
+}: DynamicPageProps) {
   const { slug: segments } = await params;
   const slug = segments.join("/");
+
+  if (slug === "resources") {
+    return (
+      <main>
+        <Header />
+        <ResourcesPage />
+        <Footer />
+      </main>
+    );
+  }
+
   const pageData = pages[slug] ?? pages["i-want-to"];
 
   return (
