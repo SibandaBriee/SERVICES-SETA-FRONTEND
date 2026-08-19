@@ -1,6 +1,8 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { navigationItems } from "../data/navigation";
 
@@ -8,8 +10,65 @@ type HeaderProps = {
   supportHref?: string;
 };
 
+function SearchIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      width="20"
+      height="20"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <circle cx="11" cy="11" r="7" />
+      <path d="m20 20-3.7-3.7" />
+    </svg>
+  );
+}
+
+function ChevronDownIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 20 20"
+      width="17"
+      height="17"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="m5 7.5 5 5 5-5" />
+    </svg>
+  );
+}
+
+function ChatIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      width="20"
+      height="20"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.9"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M21 12a8 8 0 0 1-8 8H7l-4 2 1.4-4.1A8 8 0 1 1 21 12Z" />
+    </svg>
+  );
+}
+
 export default function Header({ supportHref = "/support" }: HeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const isHomePage = pathname === "/";
 
   return (
     <>
@@ -17,77 +76,87 @@ export default function Header({ supportHref = "/support" }: HeaderProps) {
         Skip to content
       </a>
 
-      <div className="utility-bar">
-        <div className="container utility-inner">
-          <div className="accessibility">
-            <span>Accessibility</span>
-            <button type="button">A−</button>
-            <button type="button">A</button>
-            <button type="button">A+</button>
-            <button type="button">◐ High contrast</button>
-          </div>
-
-          <div className="utility-links">
-            <Link href={supportHref}>Customer care: 0800 111 901</Link>
-            <Link href={supportHref}>Get help</Link>
-            <button type="button">English⌄</button>
-          </div>
-        </div>
-      </div>
-
-      <header className="main-header">
-        <div className="container header-inner">
+      <header
+        className={`main-header ${
+          isHomePage ? "main-header--home" : "main-header--inner"
+        }`}
+      >
+        <div className="header-shell">
           <Link className="brand" href="/" aria-label="Services SETA home">
-            <span className="brand-mark">
-              <span>SERVICES</span>
-              <span>SETA</span>
-            </span>
-            <span className="brand-name">
-              SERVICES
-              <br />
-              SETA
-            </span>
+            <img
+              className="brand-logo"
+              src="/logo.png"
+              alt="Services SETA"
+              width="72"
+              height="72"
+            />
           </Link>
 
           <button
             className="menu-button"
             type="button"
-            aria-controls="primary-navigation"
+            aria-controls="header-navigation-panel"
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen((current) => !current)}
           >
-            Menu {menuOpen ? "×" : "☰"}
+            <span>{menuOpen ? "Close" : "Menu"}</span>
+            <span aria-hidden="true">{menuOpen ? "×" : "☰"}</span>
           </button>
 
-          <nav
-            id="primary-navigation"
-            className={menuOpen ? "primary-nav open" : "primary-nav"}
-            aria-label="Primary navigation"
+          <div
+            id="header-navigation-panel"
+            className={menuOpen ? "header-nav-panel open" : "header-nav-panel"}
           >
-            {navigationItems.map((item) => (
-              <Link
-                href={item.href}
-                key={item.href}
-                onClick={() => setMenuOpen(false)}
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
+            <nav className="primary-nav" aria-label="Primary navigation">
+              {navigationItems.map((item) => (
+                <Link
+                  href={item.href}
+                  key={item.href}
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </nav>
 
-          <Link className="want-button" href="/i-want-to">
-            I want to… <span>⌄</span>
-          </Link>
+            <form className="header-search" action="/search" method="get" role="search">
+              <label className="sr-only" htmlFor="header-search-input">
+                Search the Services SETA website
+              </label>
+              <SearchIcon />
+              <input
+                id="header-search-input"
+                name="q"
+                type="search"
+                placeholder="Search..."
+                autoComplete="off"
+              />
+            </form>
 
-          <Link
-            className="search-icon"
-            href="/search"
-            aria-label="Open search"
-          >
-            ⌕
-          </Link>
+            <Link
+              className="want-button"
+              href="/i-want-to"
+              onClick={() => setMenuOpen(false)}
+            >
+              <span>I want to...</span>
+              <ChevronDownIcon />
+            </Link>
+          </div>
         </div>
       </header>
+
+      <button
+        id="open-chatbot"
+        className="chatbot-trigger"
+        type="button"
+        aria-label="Open the Services SETA chatbot"
+        aria-haspopup="dialog"
+        data-chatbot-trigger
+        data-support-href={supportHref}
+      >
+        <ChatIcon />
+        <span>Need help?</span>
+      </button>
     </>
   );
 }
