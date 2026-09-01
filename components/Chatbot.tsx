@@ -1,6 +1,7 @@
 "use client";
 
-import { FormEvent, useEffect, useRef, useState } from "react";
+import type { FormEvent } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   chatbotOptions,
   type ChatbotOption,
@@ -8,7 +9,7 @@ import {
 
 type ChatMessage = {
   id: number;
-  sender: "bot" | "user";
+  sender: "assistant" | "user";
   text: string;
   href?: string;
   linkLabel?: string;
@@ -16,11 +17,59 @@ type ChatMessage = {
 
 const initialMessage: ChatMessage = {
   id: 1,
-  sender: "bot",
-  text: "Hello. I’m the Services SETA digital assistant. What would you like help with?",
+  sender: "assistant",
+  text: "Hello! I'm the Services SETA digital assistant. How can I help you today?",
 };
 
-function findResponse(message: string): ChatbotOption | undefined {
+function ChatIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M21 12a8 8 0 0 1-8 8H7l-4 2 1.4-4.1A8 8 0 1 1 21 12Z" />
+    </svg>
+  );
+}
+
+function SendIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="m22 2-7 20-4-9-9-4Z" />
+      <path d="M22 2 11 13" />
+    </svg>
+  );
+}
+
+function CloseIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+    >
+      <path d="m6 6 12 12M18 6 6 18" />
+    </svg>
+  );
+}
+
+function findResponse(message: string) {
   const normalizedMessage = message.toLowerCase();
 
   return chatbotOptions.find((option) =>
@@ -40,6 +89,7 @@ export default function Chatbot() {
   const nextId = useRef(2);
   const inputRef = useRef<HTMLInputElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     function handleEscape(event: KeyboardEvent) {
@@ -56,37 +106,40 @@ export default function Chatbot() {
   }, []);
 
   useEffect(() => {
-    if (open) {
-      inputRef.current?.focus();
-      messagesEndRef.current?.scrollIntoView({
-        behavior: "smooth",
-      });
+    if (!open) {
+      return;
     }
+
+    inputRef.current?.focus();
+
+    messagesEndRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+    });
   }, [open, messages]);
 
-  function addUserAndBotMessages(
+  function addConversationMessages(
     userText: string,
     selectedOption?: ChatbotOption,
   ) {
     const matchedOption =
       selectedOption ?? findResponse(userText);
 
-    const botMessage: ChatMessage = matchedOption
+    const assistantMessage: ChatMessage = matchedOption
       ? {
-        id: nextId.current + 1,
-        sender: "bot",
-        text: matchedOption.response,
-        href: matchedOption.href,
-        linkLabel: matchedOption.linkLabel,
-      }
+          id: nextId.current + 1,
+          sender: "assistant",
+          text: matchedOption.response,
+          href: matchedOption.href,
+          linkLabel: matchedOption.linkLabel,
+        }
       : {
-        id: nextId.current + 1,
-        sender: "bot",
-        text:
-          "I’m not yet able to answer that question directly. Choose one of the common topics below or visit customer support.",
-        href: "/support",
-        linkLabel: "Contact support",
-      };
+          id: nextId.current + 1,
+          sender: "assistant",
+          text: "I can't answer that directly yet. Select a common topic below or contact the Services SETA support team.",
+          href: "/support",
+          linkLabel: "Contact support",
+        };
 
     setMessages((currentMessages) => [
       ...currentMessages,
@@ -95,7 +148,7 @@ export default function Chatbot() {
         sender: "user",
         text: userText,
       },
-      botMessage,
+      assistantMessage,
     ]);
 
     nextId.current += 2;
@@ -104,22 +157,29 @@ export default function Chatbot() {
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    const trimmedInput = input.trim();
+    const message = input.trim();
 
-    if (!trimmedInput) return;
+    if (!message) {
+      return;
+    }
 
-    addUserAndBotMessages(trimmedInput);
+    addConversationMessages(message);
     setInput("");
   }
 
   function handleQuickOption(option: ChatbotOption) {
-    addUserAndBotMessages(option.label, option);
+    addConversationMessages(option.label, option);
   }
 
   function resetConversation() {
     setMessages([initialMessage]);
     nextId.current = 2;
     setInput("");
+    inputRef.current?.focus();
+  }
+
+  function closeChatbot() {
+    setOpen(false);
   }
 
   return (
@@ -134,26 +194,33 @@ export default function Chatbot() {
         >
           <header className="chatbot-header">
             <div className="chatbot-identity">
-              <span className="chatbot-avatar" aria-hidden="true">
-                S
+              <span
+                className="chatbot-avatar"
+                aria-hidden="true"
+              >
+                SS
               </span>
 
-              <div>
-                <h2 id="chatbot-title">Services SETA Assistant</h2>
+              <div className="chatbot-title-group">
+                <h2 id="chatbot-title">
+                  Services SETA Assistant
+                </h2>
+
                 <span className="chatbot-status">
                   <b aria-hidden="true" />
-                  Guided support
+                  Online · Guided support
                 </span>
               </div>
             </div>
 
             <button
+              ref={closeButtonRef}
               type="button"
               className="chatbot-close"
-              onClick={() => setOpen(false)}
+              onClick={closeChatbot}
               aria-label="Close chatbot"
             >
-              ×
+              <CloseIcon />
             </button>
           </header>
 
@@ -162,25 +229,44 @@ export default function Chatbot() {
             aria-live="polite"
             aria-label="Chat messages"
           >
+            <div className="chatbot-welcome-label">
+              <span>Services SETA support</span>
+            </div>
+
             {messages.map((message) => (
-              <div
-                className={`chat-message ${message.sender}`}
+              <article
+                className={`chatbot-message chatbot-message--${message.sender}`}
                 key={message.id}
               >
-                <p>{message.text}</p>
-
-                {message.href && message.linkLabel && (
-                  <a href={message.href}>
-                    {message.linkLabel} →
-                  </a>
+                {message.sender === "assistant" && (
+                  <span
+                    className="chatbot-message-avatar"
+                    aria-hidden="true"
+                  >
+                    SS
+                  </span>
                 )}
-              </div>
+
+                <div className="chatbot-bubble">
+                  <p>{message.text}</p>
+
+                  {message.href && message.linkLabel && (
+                    <a href={message.href}>
+                      {message.linkLabel}
+                      <span aria-hidden="true"> →</span>
+                    </a>
+                  )}
+                </div>
+              </article>
             ))}
 
             <div ref={messagesEndRef} />
           </div>
 
-          <div className="chatbot-options">
+          <div
+            className="chatbot-prompts"
+            aria-label="Common questions"
+          >
             {chatbotOptions.slice(0, 4).map((option) => (
               <button
                 type="button"
@@ -192,8 +278,14 @@ export default function Chatbot() {
             ))}
           </div>
 
-          <form className="chatbot-form" onSubmit={handleSubmit}>
-            <label className="sr-only" htmlFor="chatbot-message">
+          <form
+            className="chatbot-form"
+            onSubmit={handleSubmit}
+          >
+            <label
+              className="sr-only"
+              htmlFor="chatbot-message"
+            >
               Type your question
             </label>
 
@@ -201,9 +293,12 @@ export default function Chatbot() {
               ref={inputRef}
               id="chatbot-message"
               value={input}
-              onChange={(event) => setInput(event.target.value)}
-              placeholder="Ask about funding or programmes…"
+              onChange={(event) =>
+                setInput(event.target.value)
+              }
+              placeholder="Ask about funding or programmes..."
               autoComplete="off"
+              maxLength={300}
             />
 
             <button
@@ -211,38 +306,44 @@ export default function Chatbot() {
               disabled={!input.trim()}
               aria-label="Send message"
             >
-              →
+              <SendIcon />
             </button>
           </form>
 
           <footer className="chatbot-footer">
-            <span>Frontend guidance only</span>
+            <span>
+              Frontend guidance only. Confirm official requirements.
+            </span>
 
-            <button type="button" onClick={resetConversation}>
+            <button
+              type="button"
+              onClick={resetConversation}
+            >
               Start again
             </button>
           </footer>
         </section>
       )}
 
-      <button
-        type="button"
-        className="chatbot-launcher"
-        onClick={() => setOpen((currentOpen) => !currentOpen)}
-        aria-expanded={open}
-        aria-controls="services-seta-chatbot"
-        aria-label={
-          open
-            ? "Close Services SETA assistant"
-            : "Open Services SETA assistant"
-        }
-      >
-        <span className="chatbot-launcher-icon" aria-hidden="true">
-          {open ? "×" : "?"}
-        </span>
+      {!open && (
+        <button
+          type="button"
+          className="chatbot-launcher"
+          onClick={() => setOpen(true)}
+          aria-expanded="false"
+          aria-controls="services-seta-chatbot"
+          aria-label="Open Services SETA assistant"
+        >
+          <span
+            className="chatbot-launcher-icon"
+            aria-hidden="true"
+          >
+            <ChatIcon />
+          </span>
 
-        {!open && <span>Need help?</span>}
-      </button>
+          <span>Chat with us</span>
+        </button>
+      )}
     </div>
   );
 }
