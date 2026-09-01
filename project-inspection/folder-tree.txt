@@ -1,0 +1,150 @@
+﻿============================================================
+APP
+============================================================
+Folder PATH listing for volume OS
+Volume serial number is 00000263 9817:E757
+C:\SERVICES-SETA-FRONTEND\APP
+|   About.module.css
+|   globals.css
+|   layout.tsx
+|   page.tsx
+|   SicCode.module.css
+|   
++---about
+|       page.tsx
+|       
++---industries
+|   |   page.tsx
+|   |   
+|   +---sic-code-finder
+|   |       page.tsx
+|   |       
+|   \---[industry]
+|           page.tsx
+|           
++---stakeholder-notices
+|   |   page.tsx
+|   |   
+|   \---[slug]
+|           page.tsx
+|           
+\---[...slug]
+        page.tsx
+        
+
+============================================================
+COMPONENTS
+============================================================
+Folder PATH listing for volume OS
+Volume serial number is 0000026D 9817:E757
+C:\SERVICES-SETA-FRONTEND\COMPONENTS
+    About.tsx
+    ContentPage.tsx
+    Footer.tsx
+    Header.tsx
+    Hero.tsx
+    IndustriesPage.module.css
+    IndustriesPage.tsx
+    IndustryDetailPage.module.css
+    IndustryDetailPage.tsx
+    Journey.tsx
+    LatestNews.tsx
+    NewsArticlePage.module.css
+    NewsArticlePage.tsx
+    NewsroomHero.module.css
+    NewsroomHero.tsx
+    NewsroomPage.module.css
+    NewsroomPage.tsx
+    Pathways.tsx
+    QuickTasks.tsx
+    SicCode.tsx
+    Updates.tsx
+    
+No subfolders exist 
+
+
+============================================================
+DATA
+============================================================
+Folder PATH listing for volume OS
+Volume serial number is 000001C1 9817:E757
+C:\SERVICES-SETA-FRONTEND\DATA
+    aboutData.ts
+    homeData.ts
+    industries.ts
+    navigation.ts
+    newsData.ts
+    pages.ts
+    sicCodes.ts
+    
+No subfolders exist 
+
+
+============================================================
+PUBLIC
+============================================================
+Folder PATH listing for volume OS
+Volume serial number is 00000240 9817:E757
+C:\SERVICES-SETA-FRONTEND\PUBLIC
+|   cleaning-hiring-services (1).webp
+|   communication-marketing (1).webp
+|   favicon.svg
+|   labour-collective (1).webp
+|   logo.png
+|   management-business (1).webp
+|   personal-care (1).webp
+|   services-seta-hero.png
+|   
++---board
+|       duduzile.png
+|       lehlogonolo.png
+|       liesel.png
+|       makhaya.png
+|       mamabele.png
+|       matsebe.png
+|       nesamari.png
+|       sibusiso.png
+|       
++---documents
+|       SERVICES-SETA-CHAMBER-AND-SUB-SECTORS-SIC-Codes.pdf
+|       
++---industries
+|   \---source
+|           beauty-treatment.png
+|           business-services.png
+|           cleaning-hiring-hero.png
+|           cleaning-services.png
+|           collective-services.png
+|           communication-collective-services.png
+|           communication-marketing-hero.png
+|           contact-centre.png
+|           domestic-services.png
+|           fashion.png
+|           funeral-services.png
+|           hair-care.png
+|           hiring-services.png
+|           household-services.png
+|           image-consulting.png
+|           labour-collective-hero.png
+|           labour-recruitment.png
+|           management-business-hero.png
+|           marketing.png
+|           personal-care-hero.png
+|           project-management.png
+|           real-estate-hero.png
+|           real-estate.png
+|           
++---news
+|       audit-risk.png
+|       power-of-x2.png
+|       pulse-july-2026.png
+|       
+\---newsroom
+        hero-illustration.png
+        home-audit-risk.png
+        home-internship.png
+        home-newsletter-july.png
+        newsletter-june.png
+        operational-update.png
+        
+

@@ -137,9 +137,9 @@ export default function Hero() {
     <section className="hero" id="content">
       <div className="container hero-grid">
         <div className="hero-copy">
-          <p className="eyebrow hero-eyebrow">
+          {/* <p className="eyebrow hero-eyebrow">
             Your gateway to skills &amp; opportunities
-          </p>
+          </p> */}
 
           <h1>
             Developing skills.
@@ -153,10 +153,10 @@ export default function Hero() {
             </em>
           </h1>
 
-          <p className="hero-intro">
+          {/* <p className="hero-intro">
             Find clear, trusted guidance for learning, funding, accreditation
-            and skills development—then take the next step.
-          </p>
+            and skills development then take the next step.
+          </p> */}
 
           <form
             className="search-box"

@@ -136,41 +136,38 @@ export default function Footer({ homePage = false }: FooterProps) {
 
   return (
     <footer className={styles.footer}>
-      <div className={styles.waveTop}>
-        <div className={`container ${styles.waveBrand}`}>
-          <Link
-            className={styles.brandLink}
-            href={logoHref}
-            aria-label="Services SETA home"
-          >
-            <Image
-              src="/logo.png"
-              alt="Services SETA"
-              width={92}
-              height={102}
-            />
-          </Link>
-        </div>
-
-        <svg
-          className={styles.waveGraphic}
-          viewBox="0 0 1440 170"
-          preserveAspectRatio="none"
-          aria-hidden="true"
-        >
-          <path d="M0 112C205 128 365 111 570 67C785 20 1005 4 1193 43C1299 65 1377 94 1440 113V170H0V112Z" />
+      <div className={styles.wave} aria-hidden="true">
+        <svg viewBox="0 0 1440 62" preserveAspectRatio="none">
+          <path d="M0 39C210 54 404 39 610 17C848-8 1122 0 1440 42V62H0V39Z" />
         </svg>
       </div>
 
       <div className={styles.body}>
         <div className={`container ${styles.grid}`}>
-          <section className={styles.column}>
-            <h2>About Services SETA</h2>
-            <p className={styles.summary}>
+          <section className={styles.intro}>
+            <Link
+              className={styles.logoLink}
+              href={logoHref}
+              aria-label="Services SETA home"
+            >
+              <span className={styles.logoMark}>
+                <Image
+                  src="/logo.png"
+                  alt=""
+                  width={64}
+                  height={64}
+                  aria-hidden="true"
+                />
+              </span>
+              <span>SERVICES SETA</span>
+            </Link>
+
+            <p>
               Connecting learners, employers and skills development providers
               with trusted information, programmes and opportunities.
             </p>
-            <Link className={styles.textLink} href="/about">
+
+            <Link className={styles.aboutLink} href="/about">
               About Services SETA
               <ArrowIcon />
             </Link>
@@ -178,6 +175,7 @@ export default function Footer({ homePage = false }: FooterProps) {
 
           <section className={styles.column}>
             <h2>Explore</h2>
+
             <div className={styles.linkGroups}>
               <nav aria-label="Explore Services SETA">
                 <Link href="/industries">Industries We Serve</Link>
@@ -186,7 +184,8 @@ export default function Footer({ homePage = false }: FooterProps) {
                 <Link href="/accreditation">Accreditation</Link>
                 <Link href="/qualifications">Qualifications</Link>
               </nav>
-              <nav aria-label="Services SETA resources and support">
+
+              <nav aria-label="Resources and support">
                 <Link href="/career-guidance">Career Guidance</Link>
                 <Link href="/stakeholder-notices">Newsroom</Link>
                 <Link href="/resources">Resources</Link>
@@ -196,14 +195,16 @@ export default function Footer({ homePage = false }: FooterProps) {
             </div>
           </section>
 
-          <section className={`${styles.column} ${styles.contactColumn}`}>
-            <h2>Contact Us</h2>
+          <section className={`${styles.column} ${styles.connect}`}>
+            <h2>Contact &amp; Connect</h2>
+
             <a className={styles.contact} href="tel:0800111901">
               <span className={styles.contactIcon}>
                 <PhoneIcon />
               </span>
               <span>0800 111 901</span>
             </a>
+
             <a
               className={styles.contact}
               href="mailto:customercare@serviceseta.org.za"
@@ -213,6 +214,7 @@ export default function Footer({ homePage = false }: FooterProps) {
               </span>
               <span>customercare@serviceseta.org.za</span>
             </a>
+
             <Link className={styles.contact} href="/contact">
               <span className={styles.contactIcon}>
                 <LocationIcon />
@@ -223,29 +225,6 @@ export default function Footer({ homePage = false }: FooterProps) {
                 Parktown, Gauteng
               </span>
             </Link>
-          </section>
-
-          <section className={`${styles.column} ${styles.updateColumn}`}>
-            <h2>Stay Updated</h2>
-            <p className={styles.summary}>
-              Receive updates on opportunities, programmes and important
-              notices.
-            </p>
-
-            <form className={styles.subscribe} action="/contact" method="get">
-              <label className={styles.srOnly} htmlFor="footer-email">
-                Enter your email address
-              </label>
-              <input
-                id="footer-email"
-                name="email"
-                type="email"
-                placeholder="Enter your email"
-                autoComplete="email"
-                required
-              />
-              <button type="submit">Subscribe</button>
-            </form>
 
             <div className={styles.socials} aria-label="Services SETA social media">
               {socialLinks.map((socialLink) => (
@@ -263,9 +242,32 @@ export default function Footer({ homePage = false }: FooterProps) {
             </div>
           </section>
         </div>
+{/* 
+        <div className={`container ${styles.updateRow}`}>
+          <div>
+            <h2>Stay Updated</h2>
+            <p>Receive opportunities, programme and notice updates.</p>
+          </div>
+
+          <form className={styles.subscribe} action="/contact" method="get">
+            <label className={styles.srOnly} htmlFor="footer-email">
+              Enter your email address
+            </label>
+            <input
+              id="footer-email"
+              name="email"
+              type="email"
+              placeholder="Enter your email address"
+              autoComplete="email"
+              required
+            />
+            <button type="submit">Subscribe</button>
+          </form>
+        </div> */}
 
         <div className={`container ${styles.bottom}`}>
           <span>© 2026 Services SETA. All rights reserved.</span>
+
           <nav aria-label="Legal and accessibility links">
             <Link href="/resources">POPIA</Link>
             <Link href="/resources">Privacy Notice</Link>
