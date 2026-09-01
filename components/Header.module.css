@@ -443,3 +443,8 @@
     display: none;
   }
 }
+/* BEGIN HIDE DUPLICATE CHATBOT TRIGGER */
+.chatbotTrigger {
+  display: none !important;
+}
+/* END HIDE DUPLICATE CHATBOT TRIGGER */
