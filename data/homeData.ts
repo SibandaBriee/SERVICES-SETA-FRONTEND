@@ -34,11 +34,16 @@ export type Notice = {
   href: string;
 };
 
+export type ImportantDateStatus = "urgent" | "critical" | "upcoming";
+
 export type ImportantDate = {
   day: string;
   month: string;
   title: string;
   description: string;
+  status: string;
+  tone: ImportantDateStatus;
+  href: string;
 };
 export type Pathway = {
   icon: string;
@@ -176,20 +181,42 @@ export const importantDates: ImportantDate[] = [
   {
     day: "30",
     month: "SEP",
-    title: "Funding window closes",
-    description: "View details and requirements",
+    title: "Discretionary Grants Funding Window closes",
+    description:
+      "Submit all required application information before the published closing time.",
+    status: "Closing soon",
+    tone: "urgent",
+    href: "/funding",
   },
   {
     day: "07",
     month: "OCT",
     title: "WSP/ATR submission clinic",
-    description: "View details and requirements",
+    description:
+      "Online guidance session for employers and Skills Development Facilitators.",
+    status: "Upcoming",
+    tone: "upcoming",
+    href: "/funding/mandatory-grants",
   },
   {
     day: "28",
     month: "OCT",
     title: "Mandatory Grant claims deadline",
-    description: "View details and requirements",
+    description:
+      "Final date for qualifying employers to complete the current claims process.",
+    status: "Critical",
+    tone: "critical",
+    href: "/funding/mandatory-grants",
+  },
+  {
+    day: "15",
+    month: "NOV",
+    title: "Provider accreditation information session",
+    description:
+      "Information session covering requirements, applications and compliance.",
+    status: "Upcoming",
+    tone: "upcoming",
+    href: "/accreditation",
   },
 ];
 
