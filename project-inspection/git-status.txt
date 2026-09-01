@@ -1,0 +1,3 @@
+﻿ M components/Footer.tsx
+ M components/Hero.tsx
+?? project-inspection/
