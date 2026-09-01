@@ -1,0 +1,481 @@
+.page {
+  --accent: var(--sector-accent, #eb5a0a);
+  background: #fff;
+  color: #111;
+}
+
+.heroSection {
+  padding: 24px 16px 0;
+  background: #fff;
+}
+
+.heroCard {
+  display: grid;
+  width: min(1310px, 100%);
+  min-height: 258px;
+  grid-template-columns: minmax(0, 1fr) minmax(330px, 440px);
+  align-items: center;
+  gap: 34px;
+  margin: 0 auto;
+  padding: 36px 54px;
+  overflow: hidden;
+  border-radius: 18px;
+  background: linear-gradient(90deg, #ffe7bb 0%, #fff4df 58%, #fff 100%);
+}
+
+.heroCopy {
+  min-width: 0;
+}
+
+.heroCopy h1 {
+  max-width: 820px;
+  margin: 0;
+  color: #0b0b0b;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(42px, 4.5vw, 64px);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+}
+
+.heroCopy p {
+  max-width: 590px;
+  margin: 22px 0 0;
+  color: #111;
+  font-size: clamp(16px, 1.45vw, 22px);
+  line-height: 1.35;
+}
+
+.heroArtwork {
+  position: relative;
+  width: 100%;
+  height: 240px;
+  justify-self: end;
+}
+
+.heroArtwork img {
+  object-fit: contain;
+  object-position: center;
+}
+
+.contentContainer {
+  width: min(1300px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+.accordionSection {
+  padding: 70px 0 104px;
+  background: #fbfbfb;
+}
+
+.accordionList {
+  display: grid;
+  gap: 34px;
+}
+
+.accordionCard {
+  overflow: hidden;
+  border: 1px solid #f0f0f0;
+  border-radius: 15px;
+  background: #fff;
+  box-shadow: 0 13px 40px rgba(0, 0, 0, 0.09);
+}
+
+.accordionCardOpen {
+  box-shadow: 0 15px 44px rgba(0, 0, 0, 0.1);
+}
+
+.accordionHeading {
+  margin: 0;
+}
+
+.accordionHeading button {
+  display: flex;
+  width: 100%;
+  min-height: 76px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+  padding: 0 28px;
+  border: 0;
+  background: #fff;
+  color: #090909;
+  cursor: pointer;
+  text-align: left;
+}
+
+.accordionCardOpen .accordionHeading button {
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.accordionHeading button > span:first-child {
+  font-size: clamp(19px, 2.1vw, 28px);
+  font-weight: 800;
+  line-height: 1.15;
+  text-transform: uppercase;
+}
+
+.accordionHeading button:focus-visible {
+  outline: 3px solid rgba(235, 90, 10, 0.28);
+  outline-offset: -4px;
+}
+
+.chevron {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  place-items: center;
+  border: 2px solid #3d3d3d;
+  border-radius: 50%;
+  transition: transform 180ms ease;
+}
+
+.chevron svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+.panel {
+  padding: 30px 28px 24px;
+}
+
+.panelIntroGrid,
+.staticIntroGrid {
+  display: grid;
+  grid-template-columns: minmax(280px, 380px) minmax(0, 1fr);
+  align-items: start;
+  gap: 34px;
+}
+
+.sectorImage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 378 / 459;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #f0f0f0;
+}
+
+.sectorImageSquare {
+  aspect-ratio: 1;
+}
+
+.sectorImage img {
+  object-fit: cover;
+  object-position: center;
+}
+
+.introCopy {
+  min-width: 0;
+}
+
+.orangeLabel,
+.contentBlock h4,
+.infoSection h4 {
+  color: var(--accent);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.orangeLabel {
+  margin: 0 0 18px;
+}
+
+.contentBlocks,
+.compactBlocks {
+  min-width: 0;
+}
+
+.contentBlocks {
+  margin-top: 26px;
+}
+
+.contentBlock + .contentBlock {
+  margin-top: 20px;
+}
+
+.contentBlock h4 {
+  margin: 0 0 7px;
+  color: #111;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.contentBlock p,
+.contentBlock li,
+.infoSection p,
+.infoSection li,
+.note {
+  color: #111;
+  font-size: 14px;
+  line-height: 1.48;
+}
+
+.contentBlock p {
+  margin: 0 0 15px;
+}
+
+.contentBlock p:last-child {
+  margin-bottom: 0;
+}
+
+.contentBlock ul,
+.infoSection ul {
+  margin: 0;
+  padding-left: 22px;
+}
+
+.contentBlock li + li,
+.infoSection li + li {
+  margin-top: 3px;
+}
+
+.note {
+  margin: 27px 0 0;
+}
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 54px;
+  margin-top: 31px;
+}
+
+.infoColumn {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.infoSection {
+  min-width: 0;
+}
+
+.infoSection h4 {
+  margin: 0 0 15px;
+}
+
+.infoSection p {
+  margin: 0;
+}
+
+.collapseRow {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 28px;
+}
+
+.collapseRow button {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--accent);
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.staticSection {
+  padding: 58px 0 100px;
+  background: #fff;
+}
+
+.staticArticle {
+  width: min(1220px, 100%);
+  margin: 0 auto;
+}
+
+.staticArticle > h2 {
+  margin: 0;
+  color: #111;
+  font-size: clamp(26px, 3vw, 38px);
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.staticRule {
+  height: 1px;
+  margin: 25px 0 28px;
+  background: #bdbdbd;
+}
+
+.staticArticle .infoGrid {
+  margin-top: 52px;
+}
+
+.downloadBand {
+  display: flex;
+  min-height: 116px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  margin: 78px 0 0;
+  padding: 20px 42px;
+  border-radius: 8px;
+  background: #fff4e3;
+}
+
+.mailIcon {
+  display: block;
+  width: 56px;
+  height: 56px;
+  color: #222;
+}
+
+.mailIcon svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2.2;
+}
+
+.downloadBand a {
+  display: inline-flex;
+  min-height: 54px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px;
+  border-radius: 5px;
+  background: #ff7b00;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+@media (max-width: 960px) {
+  .heroCard {
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 360px);
+    padding: 34px 38px;
+  }
+
+  .panelIntroGrid,
+  .staticIntroGrid {
+    grid-template-columns: minmax(240px, 310px) minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 760px) {
+  .heroSection {
+    padding: 14px 12px 0;
+  }
+
+  .heroCard {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    padding: 30px 24px 18px;
+  }
+
+  .heroCopy h1 {
+    font-size: 39px;
+  }
+
+  .heroCopy p {
+    font-size: 16px;
+  }
+
+  .heroArtwork {
+    width: min(420px, 100%);
+    height: 220px;
+    justify-self: center;
+  }
+
+  .contentContainer {
+    width: min(100% - 24px, 1300px);
+  }
+
+  .accordionSection,
+  .staticSection {
+    padding: 44px 0 70px;
+  }
+
+  .accordionList {
+    gap: 20px;
+  }
+
+  .accordionHeading button {
+    min-height: 66px;
+    gap: 14px;
+    padding: 0 18px;
+  }
+
+  .accordionHeading button > span:first-child {
+    font-size: 18px;
+  }
+
+  .chevron {
+    width: 31px;
+    height: 31px;
+    flex-basis: 31px;
+  }
+
+  .panel {
+    padding: 22px 18px 20px;
+  }
+
+  .panelIntroGrid,
+  .staticIntroGrid,
+  .infoGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .sectorImage {
+    width: min(420px, 100%);
+  }
+
+  .infoGrid {
+    gap: 27px;
+  }
+
+  .staticArticle > h2 {
+    font-size: 28px;
+  }
+
+  .downloadBand {
+    align-items: stretch;
+    flex-direction: column;
+    margin-top: 50px;
+    padding: 24px;
+  }
+
+  .downloadBand a {
+    width: 100%;
+  }
+}
+
+@media (max-width: 430px) {
+  .heroCopy h1 {
+    font-size: 34px;
+  }
+
+  .heroArtwork {
+    height: 185px;
+  }
+
+  .accordionHeading button > span:first-child {
+    font-size: 16px;
+  }
+
+  .contentBlock p,
+  .contentBlock li,
+  .infoSection p,
+  .infoSection li,
+  .note {
+    font-size: 13px;
+  }
+}
