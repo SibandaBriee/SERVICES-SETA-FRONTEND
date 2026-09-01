@@ -47,25 +47,9 @@ function ChevronDownIcon() {
   );
 }
 
-function ChatIcon() {
-  return (
-    <svg
-      aria-hidden="true"
-      viewBox="0 0 24 24"
-      width="20"
-      height="20"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.9"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M21 12a8 8 0 0 1-8 8H7l-4 2 1.4-4.1A8 8 0 1 1 21 12Z" />
-    </svg>
-  );
-}
-
-export default function Header({ supportHref = "/support" }: HeaderProps) {
+export default function Header({
+  supportHref = "/support",
+}: HeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
   const isHomePage = pathname === "/";
@@ -78,11 +62,18 @@ export default function Header({ supportHref = "/support" }: HeaderProps) {
 
       <header
         className={`main-header ${
-          isHomePage ? "main-header--home" : "main-header--inner"
+          isHomePage
+            ? "main-header--home"
+            : "main-header--inner"
         }`}
+        data-support-href={supportHref}
       >
         <div className="header-shell">
-          <Link className="brand" href="/" aria-label="Services SETA home">
+          <Link
+            className="brand"
+            href="/"
+            aria-label="Services SETA home"
+          >
             <img
               className="brand-logo"
               src="/logo.png"
@@ -97,17 +88,33 @@ export default function Header({ supportHref = "/support" }: HeaderProps) {
             type="button"
             aria-controls="header-navigation-panel"
             aria-expanded={menuOpen}
-            onClick={() => setMenuOpen((current) => !current)}
+            aria-label={
+              menuOpen
+                ? "Close navigation menu"
+                : "Open navigation menu"
+            }
+            onClick={() =>
+              setMenuOpen((current) => !current)
+            }
           >
             <span>{menuOpen ? "Close" : "Menu"}</span>
-            <span aria-hidden="true">{menuOpen ? "×" : "☰"}</span>
+            <span aria-hidden="true">
+              {menuOpen ? "×" : "☰"}
+            </span>
           </button>
 
           <div
             id="header-navigation-panel"
-            className={menuOpen ? "header-nav-panel open" : "header-nav-panel"}
+            className={
+              menuOpen
+                ? "header-nav-panel open"
+                : "header-nav-panel"
+            }
           >
-            <nav className="primary-nav" aria-label="Primary navigation">
+            <nav
+              className="primary-nav"
+              aria-label="Primary navigation"
+            >
               {navigationItems.map((item) => (
                 <Link
                   href={item.href}
@@ -119,11 +126,21 @@ export default function Header({ supportHref = "/support" }: HeaderProps) {
               ))}
             </nav>
 
-            <form className="header-search" action="/search" method="get" role="search">
-              <label className="sr-only" htmlFor="header-search-input">
+            <form
+              className="header-search"
+              action="/search"
+              method="get"
+              role="search"
+            >
+              <label
+                className="sr-only"
+                htmlFor="header-search-input"
+              >
                 Search the Services SETA website
               </label>
+
               <SearchIcon />
+
               <input
                 id="header-search-input"
                 name="q"
@@ -144,19 +161,6 @@ export default function Header({ supportHref = "/support" }: HeaderProps) {
           </div>
         </div>
       </header>
-
-      <button
-        id="open-chatbot"
-        className="chatbot-trigger"
-        type="button"
-        aria-label="Open the Services SETA chatbot"
-        aria-haspopup="dialog"
-        data-chatbot-trigger
-        data-support-href={supportHref}
-      >
-        <ChatIcon />
-        <span>Need help?</span>
-      </button>
     </>
   );
 }
